@@ -1,0 +1,48 @@
+# Brown (1973) Table 1 - IMP-6 Galactic Radio Spectrum
+# Source: ApJ 180, 359-370 (1973), Table 1
+# Instrument: IMP-6 (Explorer 43), 300-foot dipole antenna
+# Pointing: Minimum galactic radiation, broad area about ecliptic plane
+# Brightness units: W m^-2 Hz^-1 sr^-1 (converted from x10^-23 as tabulated)
+# All errors are in percent (%)
+# Error components:
+#   err_power_pct     : Group I  - absolute power level calibration
+#   err_impedance_pct : Group II - dipole reception & transmission
+#   err_total_power_pct: Total power error (Groups I+II combined in quadrature)
+#   err_rms_recv_pct  : Group III - RMS receiving system noise fluctuations
+#   err_rms_orbital_pct: Group IV - RMS orbital average fluctuation
+#   err_total_fluct_pct: Total fluctuation error (Groups III+IV combined in quadrature)
+#   err_total_pct     : Total error (all groups combined in quadrature)
+# Notes:
+#   - Minimum spectrum: lowest emission observed, corresponds to ecliptic plane minimum
+#   - NOT a galactic pole measurement; complementary to Novaco & Brown (1978) NGP/SGP
+#   - Brown 1973 does not appear in Cane (1979) observer list, possibly because this
+#     is a minimum/ecliptic spectrum rather than a polar spectrum
+#   - Calibration: CW method below 700 kHz, primary standard method above 700 kHz
+#   - Data from orbits 10-40 after full 300-ft antenna deployment
+#
+# CHANGELOG
+# 2026-06-07: Initial extraction from PDF by Claude (claude-sonnet-4-6)
+#
+frequency_kHz,frequency_MHz,brightness_W_m2_Hz_sr,err_power_pct,err_impedance_pct,err_total_power_pct,err_rms_recv_pct,err_rms_orbital_pct,err_total_fluct_pct,err_total_pct
+130,0.130,1.5e-23,10,6,12,5,44,44,46
+155,0.155,1.9e-23,10,6,12,5,22,23,25
+185,0.185,2.7e-23,10,6,12,5,19,20,23
+210,0.210,3.7e-23,10,6,12,5,22,23,25
+250,0.250,7.3e-23,10,6,12,5,34,34,36
+292,0.292,1.7e-22,10,6,12,5,23,24,26
+375,0.375,5.2e-22,10,6,12,5,17,18,21
+425,0.425,8.49e-22,10,6,12,5,6,8,14
+475,0.475,1.40e-21,10,6,12,5,6,8,14
+600,0.600,2.20e-21,10,6,12,5,5,7,13
+737,0.737,3.65e-21,6,6,9,5,4,6,11
+815,0.815,4.29e-21,6,6,9,5,3,6,10
+870,0.870,4.86e-21,6,6,9,5,3,6,10
+950,0.950,5.04e-21,6,6,9,5,4,6,11
+1030,1.030,5.85e-21,6,6,9,5,1,5,10
+1100,1.100,6.72e-21,6,6,9,5,2,5,10
+1270,1.270,7.54e-21,6,7,9,5,3,6,11
+1450,1.450,8.25e-21,6,7,9,5,3,6,11
+1630,1.630,9.15e-21,6,7,9,5,2,5,11
+1850,1.850,9.72e-21,6,7,9,5,3,6,11
+2200,2.200,1.13e-20,6,9,11,5,3,6,12
+2600,2.600,1.17e-20,6,9,11,5,2,5,12
