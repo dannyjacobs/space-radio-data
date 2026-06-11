@@ -1,0 +1,17 @@
+name: SRD
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pyuvdata
+  - ipykernel
+  - ipython
+  - python-casacore
+  - matplotlib
+  - numpy
+  - scipy
+  - pandas
+  - tomli
+  - pyqt=5
+  - pip
+
