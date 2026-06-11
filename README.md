@@ -3,7 +3,7 @@ Digital archive and summary figures for low frequency radio from space and groun
 
 Here is an example output.
 
-![SRD][spectrum_example.png]
+![SRD](spectrum_example.png)
 The road to opening the 21cm window on the dark ages and cosmic dawn for physics and cosmology. Existing data from orbit
 and ground overplotted on global 21cm signal predictions. A smooth 5th order polynomial is subtracted to illustrate
 progress towards detection of spectral lines. Models of the 21cm signal show a sample of range of theoretical
