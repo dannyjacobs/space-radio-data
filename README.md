@@ -1,10 +1,18 @@
 # space-radio-data
 Digital archive and summary figures for low frequency radio from space and ground. Includes RAE1,RAE2, IMP-6, Elektron, and assorted ground-based measurements from 60s to today in the band 500kHz-400MHz.
 
+Here is an example output.
+
+![SRD][spectrum_example.png]
+The road to opening the 21cm window on the dark ages and cosmic dawn for physics and cosmology. Existing data from orbit
+and ground overplotted on global 21cm signal predictions. A smooth 5th order polynomial is subtracted to illustrate
+progress towards detection of spectral lines. Models of the 21cm signal show a sample of range of theoretical
+possibilities.
+
 
 #  Note on project methods.
-This project was completed using the Claude LLM Sonnet 4.6 running in "High", the second most intense mode. This is a
-first experiment at using an LLM in a reasonable way: a fairly well defined problem requiring tedious data aggregation
+This project was completed using the Claude LLM Sonnet 4.6 running in "High", the second most intense mode. This is my 
+first experiment at using an LLM for a research project. It seems a reasonable use case: a fairly well defined problem requiring tedious data aggregation
 and complex plotting. And I am in a hurry! This project start to finish took about 22 hours cumulative, three-ish work
 days.  Unaided it would have taken easily a week or more and probably generated much more convoluted code as technical
 debt built up in iteration.
