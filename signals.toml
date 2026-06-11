@@ -1,0 +1,52 @@
+# signals.toml
+# Defines 21cm signal model curves for the residual panel.
+# Each entry is one curve plotted on the residual subplot.
+#
+# z_col      : column name for redshift
+# tb_col     : column name for brightness temperature (mK)
+# tb_sign    : 1 or -1 — multiply Tb by this to get absorption-negative convention
+# freq_MHz   : if true, z_col is actually frequency in MHz (skip z->freq conversion)
+
+[signals.fob2006_standard]
+file       = "FOH2006_Tb_datasets.csv"
+label      = "FOB 2006 (standard ΛCDM)"
+z_col      = "z"
+tb_col     = "Tb"
+tb_sign    = 1
+linestyle  = "-"
+color      = "#333333"
+linewidth  = 1.1
+zorder     = 5
+
+[signals.mondal2023_standard]
+file       = "Mondal2023_Fig3_Tb_datasets.csv"
+label      = "Mondal+ 2023 (standard)"
+z_col      = "z.2"
+tb_col     = "Standard"
+tb_sign    = -1
+linestyle  = "--"
+color      = "#555555"
+linewidth  = 1.4
+zorder     = 4
+
+[signals.mondal2023_Ar0p4]
+file       = "Mondal2023_Fig3_Tb_datasets.csv"
+label      = "Mondal+ 2023 (Ar = 0.4)"
+z_col      = "z.1"
+tb_col     = "Ar0.4"
+tb_sign    = 1
+linestyle  = "-."
+color      = "#cc3311"
+linewidth  = 1.4
+zorder     = 4
+
+[signals.mondal2023_Ar0p001]
+file       = "Mondal2023_Fig3_Tb_datasets.csv"
+label      = "Mondal+ 2023 (Ar = 0.001)"
+z_col      = "z"
+tb_col     = "Ar0.001"
+tb_sign    = 1
+linestyle  = ":"
+color      = "#0077bb"
+linewidth  = 1.4
+zorder     = 4

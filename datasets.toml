@@ -1,0 +1,107 @@
+# datasets.toml
+# Defines data sources and how to extract named datasets from them.
+# Each [datasets.KEY] block produces one plotted series.
+#
+# filter: list of dicts, OR-ed together. Each dict is an AND clause.
+#         Empty list [] means use the whole file.
+# yerr_col: column name for error. If absent, no error bars.
+# yerr_type: "percent" (y * col/100) or "absolute"
+#
+# Observer key (from Cane 1979, Table 4):
+#   3  = Alexander et al. (1969a) — RAE-1, published paper
+#  16  = Alexander et al. (1969b) — RAE-1, AAS 1969 meeting presentation
+#  15  = Novaco & Brown (1978)    — RAE-2
+#   5  = Benediktov et al. (1965) — Soviet space mission (pre-RAE-1)
+
+[datasets.imp6]
+file        = "brown1973_table1.csv"
+label       = "IMP-6 (Brown 1973)"
+filter      = []
+x_col       = "frequency_MHz"
+y_col       = "brightness_W_m2_Hz_sr"
+yerr_col    = "err_total_pct"
+yerr_type   = "percent"
+source      = "Brown (1973)"
+instrument  = "IMP-6"
+obs_type    = "space"
+notes       = "Minimum ecliptic spectrum; extragalactic component subtracted per Clark et al. 1970"
+
+[datasets.rae2]
+file        = "cane1979_table2_3.csv"
+label       = "RAE-2 (Novaco & Brown 1978)"
+filter      = [{observer_num = 15}]
+x_col       = "frequency_MHz"
+y_col       = "sky_brightness_W_m2_Hz_sr"
+source      = "Novaco & Brown (1978) via Cane (1979)"
+instrument  = "RAE-2"
+obs_type    = "space"
+notes       = "NGP and SGP pointings combined; spread reflects pole-to-pole variation"
+
+[datasets.rae1]
+file        = "cane1979_table2_3.csv"
+label       = "RAE-1 (Alexander et al. 1969)"
+filter      = [{observer_num = 3}, {observer_num = 16}]
+x_col       = "frequency_MHz"
+y_col       = "sky_brightness_W_m2_Hz_sr"
+source      = "Alexander et al. (1969a,b) via Cane (1979)"
+instrument  = "RAE-1"
+obs_type    = "space"
+notes       = "Observer 3 = published paper; observer 16 = AAS 1969 meeting presentation"
+
+[datasets.benediktov]
+file        = "cane1979_table2_3.csv"
+label       = "Benediktov et al. (1965)"
+filter      = [{observer_num = 5}]
+x_col       = "frequency_MHz"
+y_col       = "sky_brightness_W_m2_Hz_sr"
+source      = "Benediktov et al. (1965) via Cane (1979)"
+instrument  = "Soviet satellite (pre-RAE-1)"
+obs_type    = "space"
+notes       = "Earliest space-based measurements; Soviet mission, exact spacecraft unconfirmed"
+
+[datasets.ground_dipole]
+file        = "cane1979_table2_3.csv"
+label       = "Ground dipole (various)"
+filter      = [{type = "D"}]
+x_col       = "frequency_MHz"
+y_col       = "sky_brightness_W_m2_Hz_sr"
+source      = "Cane (1979), multiple observers"
+instrument  = "various ground dipole"
+obs_type    = "ground_dipole"
+notes       = "NGP and SGP combined; spread reflects both directional variation and inter-observer scatter"
+
+[datasets.ground_hires]
+file        = "cane1979_table2_3.csv"
+label       = "Ground hi-res (various)"
+filter      = [{type = "A"}]
+x_col       = "frequency_MHz"
+y_col       = "sky_brightness_W_m2_Hz_sr"
+source      = "Cane (1979), multiple observers"
+instrument  = "various ground high-resolution"
+obs_type    = "ground_hires"
+notes       = "NGP and SGP combined; high angular resolution makes global average interpretation harder"
+
+[datasets.bowman2018_tsky]
+file        = "edges_nature2018_figure1_plotdata.csv"
+label       = "EDGES (Bowman+ 2018)"
+filter      = [{Weight = 1}]
+x_col       = "Frequency [MHz]"
+y_col       = "a: Tsky [K]"
+y_unit      = "K"
+source      = "Bowman et al. (2018)"
+instrument  = "EDGES high-band"
+obs_type    = "ground_hires"
+notes       = "Sky temperature Tsky, weight=1 channels only. 50-100 MHz."
+
+[datasets.bowman2018_tres1]
+file           = "edges_nature2018_figure1_plotdata.csv"
+label          = "EDGES residual (Bowman+ 2018)"
+filter         = [{Weight = 1}]
+x_col          = "Frequency [MHz]"
+y_col          = "b: Tres1 [K]"
+y_unit         = "K"
+residual_ready = true
+source         = "Bowman et al. (2018)"
+instrument     = "EDGES high-band"
+obs_type       = "ground_hires"
+notes          = "Tres1: residual after full EDGES pipeline (foreground + 21cm model subtracted)"
