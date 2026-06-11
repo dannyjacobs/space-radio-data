@@ -28,9 +28,6 @@ Please report issues to me Danny Jacobs (dcjacob2@asu.edu)
 ~Danny
 
 
-
-All data, models, and foreground fitting methods used in this repository, with links to the NASA Astrophysics Data System (ADS).
- 
 ---
  
 ## Observational Data
