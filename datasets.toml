@@ -83,7 +83,7 @@ notes       = "NGP and SGP combined; high angular resolution makes global averag
 
 [datasets.bowman2018_tsky]
 file        = "edges_nature2018_figure1_plotdata.csv"
-label       = "EDGES (Bowman+ 2018)"
+label       = "EDGES (Bowman et al 2018)"
 filter      = [{Weight = 1}]
 x_col       = "Frequency [MHz]"
 y_col       = "a: Tsky [K]"

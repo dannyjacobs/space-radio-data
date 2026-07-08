@@ -231,7 +231,7 @@ def make_plot(data_dir, output_path, unit='K'):
 
     # ── Figure layout ─────────────────────────────────────────────────────────
     fig = plt.figure(figsize=(10, 8))
-    gs  = gridspec.GridSpec(2, 1, height_ratios=[2.5, 1],
+    gs  = gridspec.GridSpec(2, 1, height_ratios=[1, 1],
                             hspace=0.0, figure=fig)
     ax_top = fig.add_subplot(gs[0])
     ax_bot = fig.add_subplot(gs[1], sharex=ax_top)
@@ -255,7 +255,7 @@ def make_plot(data_dir, output_path, unit='K'):
     unit_s = 1e3 if unit == 'mK' else 1.0
     ax_top.plot(moz_nu, moz_lst6 * unit_s,
                 lw=1.4, color='#cc0077', alpha=0.85, zorder=5,
-                label='EDGES low-band (Mozdzen+ 2019)')
+                label='EDGES low-band (Mozdzen et al. 2019)')
 
     # Foreground model line on top panel — only within fit range
     freq_fg_plot = freq_plot[freq_plot >= resid_fmin]
@@ -335,7 +335,7 @@ def make_plot(data_dir, output_path, unit='K'):
     leg_h.append(plt.Line2D([0], [0], color='gray', lw=1.2, ls='-', alpha=0.7))
     leg_l.append('Foreground model (5th-order log-log poly)')
 
-    ax_top.legend(leg_h, leg_l, loc='upper right', fontsize=7,
+    ax_top.legend(leg_h, leg_l, loc='lower left', fontsize=7,
                   framealpha=0.88, ncol=1, handlelength=1.5)
     ax_top.grid(True, which='major', ls='-',  alpha=0.2)
     ax_top.grid(True, which='minor', ls='--', alpha=0.1)
@@ -400,9 +400,9 @@ def make_plot(data_dir, output_path, unit='K'):
     bin_cen = np.array(bin_cen)
 
     # Shaded current data scatter
-    ax_bot.fill_between(bin_cen, -bin_rms, bin_rms,
-                         alpha=0.15, color='gray',
-                         label='Current data scatter (±1σ RMS)')
+    #ax_bot.fill_between(bin_cen, -bin_rms, bin_rms,
+    #                     alpha=0.15, color='gray',
+    #                     label='Current data scatter (±1σ RMS)')
 
     # ── 21cm signal models ────────────────────────────────────────────────────
     sig_cache = {}
@@ -448,11 +448,15 @@ def make_plot(data_dir, output_path, unit='K'):
         (0.01,    '#009900', '--',  'Science goal: 10 mK'),
     ]
     freq_goal = np.array([1.0, 200.0])
+    freqs = np.logspace(np.log10(freq_goal[0]),np.log10(freq_goal[1]))
     for val_K, col, ls, lbl in goals:
         val_plot = val_K * unit_scale   # K -> plot units
         ax_bot.axhline( val_plot, color=col, ls=ls, lw=1.2, alpha=0.8, label=lbl)
         ax_bot.axhline(-val_plot, color=col, ls=ls, lw=1.2, alpha=0.8)
-        ax_bot.text(0.2,val_plot*2,lbl,fontsize=8)
+
+        ax_bot.fill_between(freqs,-1*val_plot*np.ones_like(freqs),
+            y2=val_plot*np.ones_like(freqs),alpha=0.3,color=col)
+        ax_bot.text(freq_goal[0]*4,val_plot/4,lbl,fontsize=8)
 
     # ── Residual panel formatting ─────────────────────────────────────────────
     ax_bot.set_xscale('log')
