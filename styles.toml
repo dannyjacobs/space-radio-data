@@ -1,22 +1,30 @@
 # styles.toml
 # Visual style for each dataset key. Keys must match datasets.toml exactly.
-# All fields except those listed below map directly to matplotlib errorbar kwargs.
+# Most fields map directly to matplotlib errorbar/plot kwargs.
 #
 # Special fields (not passed to matplotlib):
-#   enabled      : bool - set false to hide without deleting
-#   legend_group : str  - controls legend section grouping
+#   fit_poly     : bool - include this dataset in the foreground polynomial fit.
+#                         Default false.
+#   show_temp    : bool - show this dataset in the upper brightness-temperature
+#                         panel. Default true.
+#   show_resid   : bool - show this dataset in the lower residual panel.
+#                         Default true.
+#   legend_group : str  - controls legend section grouping ('space' or 'ground').
+#
+# NOTE: if a dataset has fit_poly=true but show_resid=false, plot_spectrum.py
+#       prints a WARNING, since a dataset that defines the fit but is hidden
+#       from the residual can be confusing to interpret.
 
 # ── Residual panel layout options ────────────────────────────────────────────
-# These control the bottom subplot appearance and are read by plot_spectrum.py.
 # freq_min / freq_max : x-range for residual panel (data clipped outside this)
 # ylim_pos            : upper y limit in plot units (K or mK depending on --unit)
 # symlog_linthresh    : boundary between linear and log regions of symlog y-axis
-#                       (in same units as ylim_pos)
 [residual_panel]
 freq_min         = 1.0       # MHz — matches foreground fit lower cutoff
 freq_max         = 300.0     # MHz
-ylim_pos         = 50000.0   # K  — show ±50000 K to capture data scatter
-symlog_linthresh = 0.005       # K  — linear region ±1 K; 21cm signal (~0.04K) visible
+ylim_pos         = 50000.0   # K
+symlog_linthresh = 0.005     # K — linear region; 21cm signal (~0.04K) visible
+ytick_min        = 0.01      # K — suppress decade y-tick labels below this level
 
 # ── Dataset styles ────────────────────────────────────────────────────────────
 # Color rationale:
@@ -25,7 +33,6 @@ symlog_linthresh = 0.005       # K  — linear region ±1 K; 21cm signal (~0.04K
 #   Ground hi-res : teal/green  (well-defined pointing, harder to globalize)
 
 [styles.imp6]
-enabled      = true
 color        = "#b22222"    # firebrick — IMP-6, has real error bars
 marker       = "o"
 markersize   = 5
@@ -35,9 +42,11 @@ elinewidth   = 1.2
 zorder       = 7
 alpha        = 1.0
 legend_group = "space"
+fit_poly     = true
+show_temp    = true
+show_resid   = true
 
 [styles.rae2]
-enabled      = true
 color        = "#e07020"    # burnt orange — RAE-2
 marker       = "^"
 markersize   = 5
@@ -45,9 +54,11 @@ linestyle    = "none"
 zorder       = 6
 alpha        = 0.85
 legend_group = "space"
+fit_poly     = true
+show_temp    = true
+show_resid   = true
 
 [styles.rae1]
-enabled      = true
 color        = "#c8a000"    # golden — RAE-1
 marker       = "D"
 markersize   = 4
@@ -55,9 +66,11 @@ linestyle    = "none"
 zorder       = 5
 alpha        = 0.85
 legend_group = "space"
+fit_poly     = false
+show_temp    = true
+show_resid   = true
 
 [styles.benediktov]
-enabled      = true
 color        = "#9050c0"    # purple — Soviet mission, visually distinct
 marker       = "s"
 markersize   = 4
@@ -65,9 +78,11 @@ linestyle    = "none"
 zorder       = 5
 alpha        = 0.85
 legend_group = "space"
+fit_poly     = false
+show_temp    = true
+show_resid   = true
 
 [styles.ground_dipole]
-enabled      = true
 color        = "#2255aa"    # slate blue
 marker       = "o"
 markersize   = 3
@@ -75,9 +90,11 @@ linestyle    = "none"
 zorder       = 3
 alpha        = 0.55
 legend_group = "ground"
+fit_poly     = true
+show_temp    = true
+show_resid   = true
 
 [styles.ground_hires]
-enabled      = true
 color        = "#228866"    # teal
 marker       = "s"
 markersize   = 3
@@ -85,25 +102,44 @@ linestyle    = "none"
 zorder       = 4
 alpha        = 0.55
 legend_group = "ground"
+fit_poly     = false
+show_temp    = true
+show_resid   = true
 
-[styles.bowman2018_tsky]
-enabled      = false        # top panel covered by Mozdzen model line; suppress raw points
-color        = "#cc0077"
-marker       = "."
-markersize   = 2
-linestyle    = "none"
-zorder       = 8
-alpha        = 0.7
-top_only     = true
+[styles.mozdzen2019]
+color        = "#cc0077"    # magenta — EDGES low-band model
+marker       = "none"
+markersize   = 0
+linestyle    = "-"
+linewidth    = 1.4
+zorder       = 5
+alpha        = 0.85
 legend_group = "ground"
+fit_poly     = false
+show_temp    = true
+show_resid   = false
 
 [styles.bowman2018_tres1]
-enabled      = true
-color        = "#cc0077"
+color        = "#cc0077"    # magenta — EDGES residual after full pipeline
 marker       = "."
 markersize   = 2
 linestyle    = "none"
 zorder       = 8
 alpha        = 0.8
 legend_group = "ground"
-resid_only   = true      # only appears in residual panel, not top panel
+fit_poly     = false
+show_temp    = false        # this is a residual; has no place in the temp panel
+show_resid   = true
+
+[styles.mckay2026_cold]
+color        = "#006494"    # steel blue — distinct from all existing series
+marker       = "."
+markersize   = 1
+linestyle    = "none"
+linewidth    = 1.2
+zorder       = 8
+alpha        = 0.85
+legend_group = "ground"
+fit_poly     = true         # extends fit to 350 MHz, fixing high-freq rolloff
+show_temp    = true
+show_resid   = true
