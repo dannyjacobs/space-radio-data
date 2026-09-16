@@ -433,8 +433,8 @@ def make_plot(data_dir, output_path, unit='K'):
     # ── Goal accuracy lines ───────────────────────────────────────────────────
     goal_unit_scale = unit_scale / 1e3   # mK -> plot units
     goals = [
-        (10.0,   '#ff9900', '--',  'Pathfinder goal: 10 K'),
-        (0.01,    '#009900', '--',  'Science goal: 10 mK'),
+        (10.0,   '#ff9900', '--',  'Pathfinder mission goal: 10 K'),
+        (0.01,    '#009900', '--',  'Probe mission goal: 10 mK'),
     ]
     freq_goal = np.array([2.0, 200.0])
     freqs = np.logspace(np.log10(freq_goal[0]),np.log10(freq_goal[1]))
@@ -445,7 +445,7 @@ def make_plot(data_dir, output_path, unit='K'):
 
         ax_bot.fill_between(freqs,-1*val_plot*np.ones_like(freqs),
             y2=val_plot*np.ones_like(freqs),alpha=0.3,color=col)
-        ax_bot.text(freq_goal[0]*4,val_plot/4,lbl,fontsize=8)
+        ax_bot.text(freq_goal[0]*2,val_plot/4,lbl,fontsize=8)
 
     # ── Residual panel formatting ─────────────────────────────────────────────
     ax_bot.set_xscale('log')
@@ -475,6 +475,9 @@ def make_plot(data_dir, output_path, unit='K'):
     # ionospheric distortion significant
     ax_bot.axvspan(10, 40, alpha=0.04, color='blue', zorder=0)
     ax_bot.axvline(40, color='blue', lw=1, ls='--', alpha=0.4, zorder=1)
+    ax_bot.axvspan(88.5,110,color='red',alpha=0.04, zorder=0) #FM
+    ax_top.axvspan(88.5,110,color='red',alpha=0.04, zorder=0) #FM
+    ax_top.text(90,5e7,'FM',color='red',alpha=0.5) 
 
 
     ax_bot.grid(True, which='major', ls='-',  alpha=0.2)
