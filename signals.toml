@@ -50,3 +50,31 @@ linestyle  = ":"
 color      = "#0077bb"
 linewidth  = 1.4
 zorder     = 4
+
+[signals.magg2022_fII1]
+file       = "Magg2022_Fig8_Tb_datasets.csv"
+label      = "Magg+ 2022 (Pop II, fII=1)"
+z_col      = "z_fII1"
+tb_col     = "Tb_fII1"
+tb_sign    = 1
+linestyle  = "-"
+color      = "#1b7837"
+linewidth  = 1.4
+zorder     = 4
+source     = "Magg et al. (2022)"
+bibkey     = "2022MNRAS.514.4433M"
+note       = "Fig 8 bottom-left, fully metal-enriched (Pop II) limit; digitized"
+
+[signals.magg2022_fII0]
+file       = "Magg2022_Fig8_Tb_datasets.csv"
+label      = "Magg+ 2022 (Pop III, fII=0)"
+z_col      = "z_fII0"
+tb_col     = "Tb_fII0"
+tb_sign    = 1
+linestyle  = "--"
+color      = "#5aae61"
+linewidth  = 1.4
+zorder     = 4
+source     = "Magg et al. (2022)"
+bibkey     = "2022MNRAS.514.4433M"
+note       = "Fig 8 bottom-left, pure primordial (Pop III) limit; digitized"
